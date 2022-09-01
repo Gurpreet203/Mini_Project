@@ -8,16 +8,16 @@
         echo "<div><h2>".$_SESSION['error']['found'] ."</h2></div>";
     }
 
-    if(!empty($_SESSION['User']) && empty($_SESSION['error']['found']) && !isset($_GET['already']) && !isset($_GET['pass']))
+    elseif(!empty($_SESSION['User']) && !isset($_GET['already']) && !isset($_GET['pass']))
     {
         echo "<h2> User Inserted Successfully </h2>";
     }
 
-    if(isset($_GET['already']) && empty($_SESSION['error']['found']))
+    elseif(isset($_GET['already']) )
     {
         echo "<h2> Previous User </h2>";
     }
-    if(isset($_GET['pass']) )
+    elseif(isset($_GET['pass']) )
     {
         echo "<h2> Password changed successfully </h2>";
     }
