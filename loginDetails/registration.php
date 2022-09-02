@@ -2,69 +2,26 @@
     include 'validation.php';
     PageValidate();
 
-// to check alll fields are filled by user or not
-// first name validation
+// to check all fields are filled by user or not
+
     if( isset($_POST['submit']) )
     {
         session_start();
         $_SESSION['error'] = array();
 
-        if( !empty($_POST['fname'])  )
-        {
-            $name = ltrim($_POST['fname']);
-            if( is_numeric($name) || preg_match('/[^a-z_+-0-9]/i', $name))
-            {
-                $_SESSION['error']['fname'] = "please enter correct first name";
-            }
-            else
-            {
-                for( $i=0 ; $i<strlen($name) ; $i++)
-                {
-                    if($name[$i]==" ")
-                    {
-                        $_SESSION['error']['fname'] = "please enter only first name";
-                        break;
-                    }
-                }
-            }
-            
-        }
-        else
-        {
-            $_SESSION['error']['fname'] = "please enter first name";
-        }
+    //  first name validation
 
-// last name validation
+       $_SESSION['error'] = nameValidate($_POST['fname'] , 'fname');
 
-        if( !empty($_POST['lname']) )
-        {
-            $name = ltrim($_POST['lname']);
-            if( is_numeric($name) || preg_match('/[^a-z_+-0-9]/i', $name) )
-            {
-                $_SESSION['error']['lname'] = "please enter correct last name";
-            }
-            else
-            {
-                for( $i=0 ; $i<strlen($name) ; $i++)
-                {
-                    if($name[$i]==" ")
-                    {
-                        $_SESSION['error']['lname'] = "please enter only last name";
-                        break;
-                    }
-                }
-            }
-        }
-        else
-        {
-            $_SESSION['error']['lname'] = "please enter first name";
-        }
+    // last name validation
 
-//to validate email
+        $_SESSION['error'] = nameValidate($_POST['lname'], 'lname');
+
+    //to validate email
 
         $_SESSION['error'] = EmailPassCheck($_POST['email'] , $_POST['pass']);
 
-// to check whether user exist or not if exist it gives error 
+    // to check whether user exist or not if exist it gives error 
 
         if( isset($_SESSION['User']) )
         {
