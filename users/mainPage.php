@@ -24,7 +24,7 @@
     <nav>
         <h2 class="welcome-name">Welcome <?php if(isset($_SESSION['uname'])){echo strtoupper($_SESSION['uname']);}?></h2>
 
-        <a href="../loginDetails/loginCheck.php?login=false" class="logout"><i class="bi bi-box-arrow-left"></i> LogOut</a>
+        <a href="logout.php" class="logout"><i class="bi bi-box-arrow-left"></i> LogOut</a>
     </nav>
 </body>
 </html>

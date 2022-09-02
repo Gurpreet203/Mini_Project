@@ -1,48 +1,34 @@
 <?php
     session_start();
-    $invalid = 0;
     include 'validation.php';
+    PageValidate();
 
     if(isset($_POST['submit']))
     {
+        if(!empty($_SESSION['error']))
+        {
+            unset($_SESSION['error']);
+        }
         
         $_SESSION['error'] = EmailPassCheck($_POST['email'] , $_POST['pass']);
 
-        if(isset($_SESSION['User']) && empty($_SESSION['error']))
-        {
-            foreach($_SESSION['User'] as $key=>$value)
-            {
-                
-                if( $value['email'] == $_POST['email'] )
-                {
-                    $_SESSION['User'][$key]['pass'] = $_POST['pass'];
-                    $invalid=0;
-                    break;
-                }
-                else{
-                    $invalid++;
-                }
-            }
-        }
-        else
+        if(empty($_SESSION['error']))
         {
             if(!empty($_SESSION['error']))
             {
                 unset($_SESSION['error']);
             }
-            if(isset($_POST))
+            foreach($_SESSION['User'] as $key=>$value)
             {
-                $_POST=array();
+                if( $value['email'] == $_POST['email'] )
+                {
+                    $_SESSION['User'][$key]['pass'] = $_POST['pass'];
+                    $_SESSION['activity'] = "Password successfully changed";
+                    header("location:LogIn.php");
+                }
             }
         }
-        if($invalid==0)
-        {
-            header("location:LogIn.php?pass=true");
-        }
-        else
-        {
-           echo "<h2>User not found</h2>";
-        }
+        echo "<h2>User not found</h2>";
     }
 ?>
 

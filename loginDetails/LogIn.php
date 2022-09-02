@@ -2,25 +2,9 @@
 
     session_start();
     include 'loginCheck.php';
-// this conditions is for make log in page heading dynamic like if user not found show user not found otherwise user inserted etc.
-    if(!empty($_SESSION['error']['found']))
-    {
-        echo "<div><h2>".$_SESSION['error']['found'] ."</h2></div>";
-    }
 
-    elseif(!empty($_SESSION['User']) && !isset($_GET['already']) && !isset($_GET['pass']))
-    {
-        echo "<h2> User Inserted Successfully </h2>";
-    }
-
-    elseif(isset($_GET['already']) )
-    {
-        echo "<h2> Previous User </h2>";
-    }
-    elseif(isset($_GET['pass']) )
-    {
-        echo "<h2> Password changed successfully </h2>";
-    }
+    echo "<h2>".userStatus()."</h2>";
+    
 ?>
 
 <!DOCTYPE html>

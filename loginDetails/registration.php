@@ -45,6 +45,11 @@
         }
         else
         {
+            if( !empty($_SESSION['error']) )
+            {
+                unset($_SESSION['error']);
+            }
+            
             $_SESSION['User'][] = $_POST;
             $curr = count( $_SESSION['User'] );
             array_unshift( $_SESSION['User'][$curr-1] , $curr );

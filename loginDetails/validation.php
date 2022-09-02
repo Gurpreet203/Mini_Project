@@ -12,6 +12,31 @@
         }
     }
 
+// this function is for make log in page heading dynamic like if user not found show user not found otherwise user inserted etc.
+    function userStatus()
+    {
+        if(!empty($_SESSION['error']['found']))
+        {
+            $temp = $_SESSION['error']['found'];
+        }
+
+        elseif(!empty($_SESSION['User']) && !isset($_SESSION['activity']))
+        {
+            $temp =  "User Inserted Successfully";
+        }
+
+        elseif(isset($_GET['already']) )
+        {
+            $temp = "Previous User";
+        }
+        elseif(isset($_SESSION['activity']) )
+        {
+            $temp = $_SESSION['activity'];
+        }
+        return $temp;
+    }
+
+
 // this function is for check if the user fill email and password or not
 
     function EmailPassCheck($email , $password)
