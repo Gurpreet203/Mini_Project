@@ -27,7 +27,7 @@ $error=array();
     function userStatus( $tempSession )
     {
         $temp =null;
-        if(!empty($tempSession['error']['found']))
+        if(!empty($tempSession['error']['found']) && !isset($tempSession['activity']))
         {
             $temp = $tempSession['error']['found'];
         }
