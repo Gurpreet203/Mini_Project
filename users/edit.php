@@ -1,12 +1,10 @@
 <?php
     session_start();
+    include '../loginDetails/validation.php';
 // validate the user    
-    if(isset($_SESSION['loggedin']))
+    if(!PageValidate() )
     {
-        if($_SESSION['loggedin']!=true)
-        {
-            header ("location:../loginDetails/signup.php");
-        }
+        header("location:../loginDetails/signup.php");
     }
 
 // here we search for user id and store it in some temperary variable so that it's value can be shown in fields

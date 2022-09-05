@@ -1,7 +1,10 @@
 <?php
     session_start();
     include 'validation.php';
-    PageValidate();
+    if( PageValidate() )
+    {
+        header("location:../users/mainPage.php");
+    }
 
     if(isset($_POST['submit']))
     {

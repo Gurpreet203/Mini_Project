@@ -3,7 +3,7 @@
     session_start();
     include 'loginCheck.php';
 
-    echo "<h2>".userStatus()."</h2>";
+    echo "<h2>".userStatus($_SESSION)."</h2>";
     
 ?>
 

@@ -1,7 +1,10 @@
 <?php
 
     include 'validation.php';
-    PageValidate();
+    if( PageValidate() )
+    {
+        header("location:../users/mainPage.php");
+    }
 
 // to check if user enter all fields of form in login page
     if(isset($_POST['submit']))

@@ -1,13 +1,16 @@
 <?php
     include 'validation.php';
-    PageValidate();
+    if( PageValidate() )
+    {
+        header("location:../users/mainPage.php");
+    }
 
 // to check all fields are filled by user or not
 
     if( isset($_POST['submit']) )
     {
         session_start();
-        $_SESSION['error'] = array();
+        // $_SESSION['er    ror'] = array();
 
     //  first name validation
 
@@ -19,10 +22,9 @@
 
     //to validate email
 
-        $_SESSION['error'] = EmailPassCheck($_POST['email'] , $_POST['pass']);
+        $_SESSION['error']= EmailPassCheck($_POST['email'] , $_POST['pass']);
 
     // to check whether user exist or not if exist it gives error 
-
         if( isset($_SESSION['User']) )
         {
             foreach( $_SESSION['User'] as $key=>$value )

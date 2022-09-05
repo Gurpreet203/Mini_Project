@@ -1,17 +1,13 @@
 <?php
     session_start();
 
-// to check only logged in user can access this page (not access with url if user is not logged in) 
-    if(isset($_SESSION['loggedin']))
+    include '../loginDetails/validation.php';
+    // validate the user    
+    if(!PageValidate() )
     {
-        if($_SESSION['loggedin']==false)
-        {
-            header("location:../loginDetails/LogIn.php");
-        }
-    }
-    else{
         header("location:../loginDetails/signup.php");
     }
+   
 ?>
 
 
