@@ -44,6 +44,7 @@ $error=array();
         elseif(isset($tempSession['activity']) )
         {
             $temp = $tempSession['activity'];
+            unset($tempSession['activity']);
         }
         return $temp;
     }
@@ -69,6 +70,18 @@ $error=array();
         if( empty($password) )
         {
             $error['pass'] = "please enter password";
+        }
+        else
+        {
+            $password = trim($password);
+            if(empty($password))
+            {
+                $error['pass'] = "please don't enter spaces only password";
+            }
+            elseif(strlen($password)<8)
+            {
+                $error['pass'] = "please enter 8 digit password";
+            }
         }
         return $error;
     }
